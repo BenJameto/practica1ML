@@ -29,6 +29,8 @@ public class Simulacion {
             PrintWriter printWriter = new PrintWriter(fileWriter);
 
             for (int mes = 1; mes <= 12; mes++) {
+                System.out.println("Registrando transacciones para el mes " + mes);
+
                 printWriter.println("Mes " + mes + ":");
 
                 alicia.contratarServicio("Memeflix", new MemeflixCobro());
@@ -40,9 +42,15 @@ public class Simulacion {
 
                 sistemaCobro.cobrarServicios(mes);
 
+                try {
+                    Thread.sleep(2000); // Pausar la ejecución durante 1 segundo
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+        
                 printWriter.println();
             }
-
+        
             printWriter.close();
         } catch (IOException e) {
             e.printStackTrace();

@@ -13,7 +13,8 @@ class SistemaCobro {
     }
 
     public void cobrarServicios(double mes) {
-        for (Cliente cliente : clientes) {
+        List<Cliente> clientesCopia = new ArrayList<>(clientes); // Copia de la lista original
+        for (Cliente cliente : clientesCopia) {
             for (String servicio : cliente.serviciosContratados) {
                 double costo = obtenerCosto(servicio, mes);
                 if (cliente.getDineroDisponible() >= costo) {
